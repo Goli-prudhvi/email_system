@@ -2,9 +2,7 @@
 # email_generator.py
 import requests
 from requests.exceptions import RequestException, Timeout
-# from config import OPENROUTER_API_KEY, OPENROUTER_MODEL
 from config import get_openrouter_config
-cfg = get_openrouter_config()
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 TIMEOUT_SECONDS = 25
@@ -15,6 +13,7 @@ class EmailGenerationError(Exception):
 
 
 def _call_openrouter(prompt: str, temperature: float):
+    cfg = get_openrouter_config()
     try:
         response = requests.post(
             OPENROUTER_URL,

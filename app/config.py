@@ -80,8 +80,10 @@ def get_openrouter_config():
     model = get_env("OPENROUTER_MODEL")
 
     if not api_key or not model:
-        raise RuntimeError("OpenRouter environment variables are missing")
-
+        raise RuntimeError(
+            "OPENROUTER_API_KEY and OPENROUTER_MODEL are required. "
+            "Please set them in Railway's environment variables or in a .env file for local development."
+        )
     return {
         "api_key": api_key,
         "model": model,
