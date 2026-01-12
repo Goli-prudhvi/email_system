@@ -3,10 +3,13 @@ import pandas as pd
 from sqlalchemy import text
 from datetime import datetime, timezone
 
-from database import SessionLocal, engine
+from database import get_engine, get_session_local
 from models import Lead, EmailLog
 from email_sender import send_email
 
+# Initialize DB (lazy + safe for Streamlit)
+engine = get_engine()
+SessionLocal = get_session_local()
 # -------------------------------------------------
 # Page Config
 # -------------------------------------------------
