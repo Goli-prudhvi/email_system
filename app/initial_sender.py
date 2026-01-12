@@ -2,12 +2,13 @@
 
 from datetime import datetime, timezone
 from sqlalchemy.exc import SQLAlchemyError
-from database import SessionLocal
+from database import get_session_local
 from models import Lead, EmailLog
 from email_generator import generate_email
 from email_sender import send_email
 
 def generate_initial_drafts():
+    SessionLocal = get_session_local()
     session = SessionLocal()
 
     leads = (

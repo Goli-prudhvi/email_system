@@ -1,5 +1,5 @@
 from datetime import datetime, timedelta, timezone
-from database import SessionLocal
+from database import get_session_local
 from models import Lead
 from email_generator import generate_email
 from email_sender import send_email
@@ -8,6 +8,7 @@ WAIT_TIME = timedelta(hours=24)
 # WAIT_TIME = timedelta(minutes=2)
 
 def check_post_reply_followups():
+    SessionLocal = get_session_local()
     session = SessionLocal()
     now = datetime.now(timezone.utc)
 

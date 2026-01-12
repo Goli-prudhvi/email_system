@@ -1,10 +1,7 @@
-# # intent_analyzer.py
+# intent_analyzer.py
 import requests
 from requests.exceptions import RequestException, Timeout
-# from config import OPENROUTER_API_KEY, OPENROUTER_MODEL
 from config import get_openrouter_config
-
-
 
 OPENROUTER_URL = "https://openrouter.ai/api/v1/chat/completions"
 TIMEOUT_SECONDS = 20

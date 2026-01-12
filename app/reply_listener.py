@@ -4,7 +4,7 @@ import email
 from email.utils import parseaddr
 from datetime import datetime, timezone
 
-from database import SessionLocal
+from database import get_session_local
 from models import Lead, EmailLog
 from intent_analyzer import analyze_reply
 from email_generator import generate_reply_email
@@ -52,6 +52,7 @@ def listen_replies():
         print("⚠️ IMAP not configured, skipping reply listener")
         return
 
+    SessionLocal = get_session_local()
     session = SessionLocal()
     mail = None
 

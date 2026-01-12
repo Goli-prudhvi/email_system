@@ -1,7 +1,7 @@
 # followup_scheduler.py
 from apscheduler.schedulers.background import BackgroundScheduler
 from datetime import datetime, timedelta, timezone
-from database import SessionLocal
+from database import get_session_local
 from models import Lead
 from email_generator import generate_email
 
@@ -12,6 +12,7 @@ FOLLOWUP_DELAY = timedelta(minutes=5)  # change for prod
 
 
 def check_followups():
+    SessionLocal = get_session_local()
     session = SessionLocal()
     now_utc = datetime.now(timezone.utc)
 

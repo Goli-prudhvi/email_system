@@ -1,8 +1,7 @@
 import time
 import sys
 
-from database import engine, Base
-
+from database import get_engine, Base
 from lead_ingestion import ingest_leads
 from initial_sender import generate_initial_drafts
 from followup_scheduler import start_scheduler
@@ -12,6 +11,7 @@ from post_reply_followup import check_post_reply_followups
 
 def bootstrap_database():
     try:
+        engine = get_engine()
         Base.metadata.create_all(engine)
         print("✅ Database schema ready")
     except Exception as e:

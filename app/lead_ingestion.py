@@ -1,13 +1,14 @@
-# # #lead_ingestion.py for pain point is string
+# lead_ingestion.py for pain point is string
 
 import json
 from sqlalchemy.exc import IntegrityError
 from email_validator import validate_email, EmailNotValidError
-from database import SessionLocal
+from database import get_session_local
 from models import Lead
 
 
 def ingest_leads(json_path):
+    SessionLocal = get_session_local()
     session = SessionLocal()
 
     with open(json_path, "r", encoding="utf-8") as f:
