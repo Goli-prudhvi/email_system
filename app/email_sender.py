@@ -74,13 +74,26 @@
 
 
 # email_sender.py
-import smtplib
 import socket
+
+# 🔥 Force IPv4 only (fixes Gmail SMTP on Railway / cloud)
+_original_getaddrinfo = socket.getaddrinfo
+
+def ipv4_only_getaddrinfo(*args, **kwargs):
+    return [
+        addr for addr in _original_getaddrinfo(*args, **kwargs)
+        if addr[0] == socket.AF_INET
+    ]
+
+socket.getaddrinfo = ipv4_only_getaddrinfo
+
+
+
+import smtplib
 from email.mime.text import MIMEText
 from typing import Optional
 
 from config import get_smtp_config
-
 SMTP_HOST = "smtp.gmail.com"
 SMTP_PORT = 587          # ✅ FIX
 SMTP_TIMEOUT = 20
