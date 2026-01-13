@@ -7,9 +7,9 @@ from typing import Optional
 from config import get_smtp_config
 
 SMTP_HOST = "smtp.gmail.com"
-SMTP_PORT = 465
-# SMTP_PORT = 587
-SMTP_TIMEOUT = 20  # seconds
+# SMTP_PORT = 465
+SMTP_PORT = 587
+SMTP_TIMEOUT = 60  # seconds
 
 
 class EmailSendError(Exception):
