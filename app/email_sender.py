@@ -94,10 +94,12 @@ from email.mime.text import MIMEText
 from typing import Optional
 
 from config import get_smtp_config
-SMTP_HOST = "smtp.gmail.com"
-SMTP_PORT = 587          # ✅ FIX
-SMTP_TIMEOUT = 20
-
+# SMTP_HOST = "smtp.gmail.com"
+# SMTP_PORT = 587          # ✅ FIX
+# SMTP_TIMEOUT = 20
+SMTP_HOST = "74.125.133.109"
+SMTP_PORT = 587
+SMTP_TIMEOUT = 120
 
 class EmailSendError(Exception):
     pass
